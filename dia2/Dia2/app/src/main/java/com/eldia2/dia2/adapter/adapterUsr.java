@@ -14,11 +14,18 @@ import java.util.Vector;
 
 /**
  * Created by rigobono on 13/12/16.
+ * Un Adapter es la clase que le da forma y asigna el comportamiento a un contenedor de tipo RecyclerView
+ * Aqui es donde se hace toda la asignación de datos, es de especial importancia tener una buena clase
+ * de referencia (model o bean) que almacene los datos de caracteristicas repetitivas dentro de los contenedores.
+ *
+ *
  */
 
 public class adapterUsr extends RecyclerView.Adapter<adapterUsr.UsuarioViewHolder>{
 
     Vector<usuario> listaUsuarios;
+
+
 
     public void setListaUsuarios(Vector<usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
