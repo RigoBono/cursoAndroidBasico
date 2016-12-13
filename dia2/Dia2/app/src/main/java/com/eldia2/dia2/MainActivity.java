@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 
 import com.eldia2.dia2.adapter.tarea;
 
@@ -37,5 +38,7 @@ public class MainActivity extends AppCompatActivity {
         listaDeTareas.setHasFixedSize(true);
         listaDeTareas.setItemViewCacheSize(5);
         listaDeTareas.setAdapter(tr);
+
+
     }
 }

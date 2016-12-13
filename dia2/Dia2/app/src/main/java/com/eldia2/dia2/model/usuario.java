@@ -8,11 +8,14 @@ public class usuario {
     String nombre;
     int edad;
     String escuela;
+    int imagenRes;
 
-    public usuario(String nombre, int edad, String escuela) {
+
+    public usuario(String nombre, int edad, String escuela, int imagenRes) {
         this.nombre = nombre;
         this.edad = edad;
         this.escuela = escuela;
+        this.imagenRes = imagenRes;
     }
 
     public String getNombre() {
@@ -37,5 +40,13 @@ public class usuario {
 
     public void setEscuela(String escuela) {
         this.escuela = escuela;
+    }
+
+    public int getImagenRes() {
+        return imagenRes;
+    }
+
+    public void setImagenRes(int imagenRes) {
+        this.imagenRes = imagenRes;
     }
 }
