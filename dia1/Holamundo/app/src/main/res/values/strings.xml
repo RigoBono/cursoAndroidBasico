@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hola mundo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!--Main Activity-->
+    <string name="texto1">Hola chicos de android :P</string>
+</resources>
