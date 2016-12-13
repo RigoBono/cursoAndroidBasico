@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.eldia2.dia2.adapter.adapterUsr;
 import com.eldia2.dia2.adapter.tarea;
 import com.eldia2.dia2.model.usuario;
 
@@ -14,13 +15,14 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView listaDeTareas;
-
+    RecyclerView listaeDeUsuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listaDeTareas=(RecyclerView)findViewById(R.id.listaDeTareas);
+        listaeDeUsuarios=(RecyclerView)findViewById(R.id.listaDeUsuarios); 
 
         Vector<String> misTareas=new Vector<String>();
         misTareas.add("Saludar");
@@ -46,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
         usuarios.add(new usuario("Larry page",50,"ALGUNA en EUA",R.drawable.larry_page));
         usuarios.add(new usuario("linus",50,"ALGUNA",R.drawable.linus));
         usuarios.add(new usuario("Richard",50,"ALGUNA",R.drawable.richard));
+
+
+        LinearLayoutManager llm2=new LinearLayoutManager(MainActivity.this);
+        adapterUsr usra=new  adapterUsr();
+        usra.setListaUsuarios(usuarios);
+        listaeDeUsuarios.setLayoutManager(llm2);
+        listaeDeUsuarios.setHasFixedSize(true);
+        listaeDeUsuarios.setItemViewCacheSize(5);
+        listaeDeUsuarios.setAdapter(usra);
 
 
 
