@@ -20,6 +20,10 @@ public class adapterUsr extends RecyclerView.Adapter<adapterUsr.UsuarioViewHolde
 
     Vector<usuario> listaUsuarios;
 
+    public void setListaUsuarios(Vector<usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
     @Override
     public UsuarioViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.tarjeta_usuario,parent,false);
@@ -33,7 +37,7 @@ public class adapterUsr extends RecyclerView.Adapter<adapterUsr.UsuarioViewHolde
         holder.nombre.setText(listaUsuarios.elementAt(position).getNombre());
         holder.edad.setText(Integer.toString(listaUsuarios.elementAt(position).getEdad()));
         holder.escuela.setText(listaUsuarios.elementAt(position).getEscuela());
-        
+
     }
 
     @Override

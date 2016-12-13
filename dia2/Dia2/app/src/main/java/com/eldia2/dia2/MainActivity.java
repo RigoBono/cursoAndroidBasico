@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.eldia2.dia2.adapter.tarea;
+import com.eldia2.dia2.model.usuario;
 
 import java.util.Vector;
 
@@ -38,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         listaDeTareas.setHasFixedSize(true);
         listaDeTareas.setItemViewCacheSize(5);
         listaDeTareas.setAdapter(tr);
+
+
+        Vector<usuario> usuarios=new Vector<usuario>();
+        usuarios.add(new usuario("Bono",50,"ALGUNA",R.drawable.bono));
+        usuarios.add(new usuario("Larry page",50,"ALGUNA en EUA",R.drawable.larry_page));
+        usuarios.add(new usuario("linus",50,"ALGUNA",R.drawable.linus));
+        usuarios.add(new usuario("Richard",50,"ALGUNA",R.drawable.richard));
+
 
 
     }
