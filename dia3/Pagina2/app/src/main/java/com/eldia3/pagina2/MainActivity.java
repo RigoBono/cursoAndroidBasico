@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         for( usuario res:query){
             Log.i("PruebaSUGAR",res.getNombre()+ " "+res.getTelefono());
+            res.
         }
 
 
