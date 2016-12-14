@@ -12,9 +12,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.eldia3.pagina2.modelo.usuario;
+import com.eldia3.pagina2.util.imagen;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
@@ -23,9 +25,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_CAMERA=1;
+    Button botonVerPresentacion;
+    Button botonTomarFoto;
+    EditText nombreEdt;
+    EditText telefonoEdt;
 
-    ImageView imagen;
-    Button boton;
+    usuario usr;
+
 
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
@@ -33,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == REQUEST_CAMERA && resultCode == Activity.RESULT_OK){
             Bundle bundle= data.getExtras();
             Bitmap imagenResultado= (Bitmap) bundle.get("data");
-            imagen.setImageBitmap(imagenResultado);
+            usr.setFotoPerfil(imagen.toBase64(imagenResultado));
+            botonVerPresentacion.setVisibility(View.VISIBLE);
         }
-
     }
 
 
@@ -44,11 +50,16 @@ public class MainActivity extends AppCompatActivity {
     {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED)
 
         {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA},
                     1);
             return;
         }
@@ -59,32 +70,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imagen=(ImageView)findViewById(R.id.imagen);
-        boton=(Button)findViewById(R.id.boton);
+        checapermisos();
 
-        boton.setOnClickListener(new View.OnClickListener() {
+        usr=new usuario();
+        nombreEdt=(EditText)findViewById(R.id.nombreEdt);
+        telefonoEdt=(EditText)findViewById(R.id.telefonoEdt);
+        botonVerPresentacion=(Button)findViewById(R.id.verPresentacion);
+        botonTomarFoto=(Button)findViewById(R.id.botonFoto);
+
+        botonTomarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tomaFoto();
             }
         });
 
-        usuario usr=new usuario();
-        usr.setNombre("Pablo");
-        usr.setTelefono("3543453453");
+        botonVerPresentacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verPresentacion();
+            }
+        });
+
+    }
+
+    public void verPresentacion(){
+        Intent intent=new Intent(MainActivity.this,tarjeta_presentacion.class);
+
+        usr.setNombre(nombreEdt.getText().toString());
+        usr.setTelefono(telefonoEdt.getText().toString());
         usr.save();
 
-        usuario dataobten=usuario.findById(usuario.class,1);
+        intent.putExtra("id",usr.getId().intValue());
 
-
-        List<usuario> query= Select.from(usuario.class).
-                where(Condition.prop("telefono").eq("3543453453")).list();
-
-        for( usuario res:query){
-            Log.i("PruebaSUGAR",res.getNombre()+ " "+res.getTelefono());
-
-        }
-
+        startActivity(intent);
 
     }
 
