@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     Button botonTomarFoto;
     EditText nombreEdt;
     EditText telefonoEdt;
+    EditText edadEdt;
+    EditText escuelaEdt;
 
     usuario usr;
 
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         telefonoEdt=(EditText)findViewById(R.id.telefonoEdt);
         botonVerPresentacion=(Button)findViewById(R.id.verPresentacion);
         botonTomarFoto=(Button)findViewById(R.id.botonFoto);
+        edadEdt=(EditText)findViewById(R.id.edadEdt);
+        escuelaEdt=(EditText)findViewById(R.id.escuelaEdt);
 
         botonTomarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,9 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
         usr.setNombre(nombreEdt.getText().toString());
         usr.setTelefono(telefonoEdt.getText().toString());
+        usr.setEdad(Integer.parseInt(edadEdt.getText().toString()));
+        usr.setEscuela(escuelaEdt.getText().toString());
         usr.save();
 
         intent.putExtra("id",usr.getId().intValue());
+
 
         startActivity(intent);
 

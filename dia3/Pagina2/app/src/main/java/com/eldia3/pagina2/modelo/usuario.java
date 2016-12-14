@@ -10,14 +10,34 @@ public class usuario extends SugarRecord {
     String nombre="";
     String telefono="";
     String fotoPerfil="";
+    int edad=0;
+    String escuela;
 
     public usuario() {
     }
 
-    public usuario(String nombre, String telefono, String fotoPerfil) {
+    public usuario(String nombre, String telefono, String fotoPerfil, int edad, String escuela) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.fotoPerfil = fotoPerfil;
+        this.edad = edad;
+        this.escuela = escuela;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getEscuela() {
+        return escuela;
+    }
+
+    public void setEscuela(String escuela) {
+        this.escuela = escuela;
     }
 
     public String getNombre() {

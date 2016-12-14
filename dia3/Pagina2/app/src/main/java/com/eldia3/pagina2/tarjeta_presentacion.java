@@ -16,6 +16,8 @@ public class tarjeta_presentacion extends AppCompatActivity {
     ImageView imagenPerfil;
     TextView nombre;
     TextView telefono;
+    TextView edad;
+    TextView escuela;
 
 
     @Override
@@ -26,6 +28,8 @@ public class tarjeta_presentacion extends AppCompatActivity {
         imagenPerfil=(ImageView)findViewById(R.id.imagenperfil);
         nombre=(TextView)findViewById(R.id.nombre);
         telefono=(TextView)findViewById(R.id.telefono);
+        edad=(TextView)findViewById(R.id.edad);
+        escuela=(TextView)findViewById(R.id.escuela);
 
         Bundle bundle=getIntent().getExtras();
         int idUsuario=bundle.getInt("id");
@@ -34,6 +38,10 @@ public class tarjeta_presentacion extends AppCompatActivity {
 
         nombre.setText(usr.getNombre());
         telefono.setText(usr.getTelefono());
+        edad.setText(Integer.toString(usr.getEdad()));
+        escuela.setText(usr.getEscuela());
+
+
 
         Bitmap imagendec= imagen.getBitmap(usr.getFotoPerfil());
         imagenPerfil.setImageBitmap(imagendec);
