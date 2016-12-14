@@ -9,8 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText nombreEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        nombreEdt=(EditText)findViewById(R.id.nombreEdt);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void cambiaPantalla(){
         Intent intento=new Intent(MainActivity.this,paso2.class);
+        intento.putExtra("nombre",nombreEdt.getText().toString());
         startActivity(intento);
     }
 
