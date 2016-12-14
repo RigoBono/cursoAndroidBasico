@@ -14,6 +14,8 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     EditText nombreEdt;
+    EditText telefonoEdt;
+    EditText direccionEdt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         nombreEdt=(EditText)findViewById(R.id.nombreEdt);
+        telefonoEdt=(EditText)findViewById(R.id.telefonoEdt);
+        direccionEdt=(EditText)findViewById(R.id.direccionEdt);
+        
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public void cambiaPantalla(){
         Intent intento=new Intent(MainActivity.this,paso2.class);
         intento.putExtra("nombre",nombreEdt.getText().toString());
+        intento.putExtra("telefono",telefonoEdt.getText().toString());
+        intento.putExtra("direccion",direccionEdt.getText().toString());
         startActivity(intento);
     }
 
